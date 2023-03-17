@@ -20,7 +20,7 @@ byte colPins[COLS] = {6,7,8,9};     // connect to the column pinouts of the keyp
 
 unsigned int addr = 0;              // Address to store time value in EEPROM
 
-bool isSet = false;
+bool isTimeSet = false;
 bool toRefile = false;
 
 unsigned int currentTime = 0;
@@ -111,12 +111,12 @@ void setup() {
 
 void loop() {
   // Check if time has already been set
-  if (!isSet) {
+  if (!isTimeSet) {
     setTimer();
   }
 
   // Check if reset button has been pressed
-  if (isSet && keypad.getKey() != NO_KEY && keypad.getKey() == '*') {
+  if (isTimeSet && keypad.getKey() != NO_KEY && keypad.getKey() == '*') {
     resetTimer();
   }
 
