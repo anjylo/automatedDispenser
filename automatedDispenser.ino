@@ -24,7 +24,7 @@ bool isSet = false;
 bool toRefile = false;
 
 unsigned int currentTime = 0;
-unsigned int setTimer = 0;
+unsigned int setTime = 0;
 
 LiquidCrystal lcd();                // Pa set nalang
 
