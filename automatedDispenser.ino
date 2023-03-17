@@ -23,6 +23,9 @@ unsigned int addr = 0;              // Address to store time value in EEPROM
 bool isSet = false;
 bool toRefile = false;
 
+unsigned int currentTime = 0;
+unsigned int setTimer = 0;
+
 LiquidCrystal lcd();                // Pa set nalang
 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
@@ -88,6 +91,19 @@ String getTimerData() {
   return strtoul(inputStr.c_str(), NULL, 10);
 }
 
+void setTimer() {
+  setTime = getTimerData();
+
+  EEPROM.write(addr, setTime); // store time value in EEPROM
+  lcd.clear();
+  lcd.print("Time set to:");
+  lcd.setCursor(0, 1);
+  lcd.print(setTime);
+  lcd.print(" seconds");
+  delay(2000);
+  lcd.clear();
+  isTimeSet = true;
+}
 void setup() {
   setLCD();                        // Initialize LCD display
   Serial.begin(9600);
